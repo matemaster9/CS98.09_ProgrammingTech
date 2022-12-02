@@ -61,9 +61,11 @@ JWS(Signed JWT)主要生成流程：
 <mark style="color:red;">**难点**</mark>：
 
 1. 什么是JWS JSON Serialization?
-2. JWS header claims的各个参数作用？
+2. JWS header claims的各个参数(除标准jwt之外的参数)作用？
 
 <mark style="color:red;">**重点知识**</mark>：
+
+#### JWS签名方案
 
 在JWS中，Share SecretKey，各方都可以验证和生成令牌。在公钥/私钥中，_只有私钥可以验证、生成令牌_，_公钥只可以验证令牌，不能用于生成令牌_
 
@@ -76,7 +78,61 @@ _**从生产者与消费者角度理解JWS**_
 
 <figure><img src=".gitbook/assets/image (2).png" alt=""><figcaption><p>JWT 签名</p></figcaption></figure>
 
+#### JWS结构与多重签名
+
+
+
 ### JWE
+
+
+
+### JWK
+
+
+
+### JWA
+
+
+
+## JWT类库
+
+### jjwt
+
+_<mark style="color:blue;">**maven**</mark>_<mark style="color:blue;">**坐标**</mark>
+
+```xml
+<dependency>
+    <groupId>io.jsonwebtoken</groupId>
+    <artifactId>jjwt-api</artifactId>
+    <version>${jjwt.version}</version>
+</dependency>
+
+<dependency>
+    <groupId>io.jsonwebtoken</groupId>
+    <artifactId>jjwt-impl</artifactId>
+    <version>${jjwt.version}</version>
+</dependency>
+
+<dependency>
+    <groupId>io.jsonwebtoken</groupId>
+    <artifactId>jjwt-jackson</artifactId>
+    <version>${jjwt.version}</version>
+</dependency>
+```
+
+_<mark style="color:blue;">**GitHub**</mark>_<mark style="color:blue;">**教程**</mark>
+
+{% embed url="https://github.com/jwtk/jjwt" %}
+jjwt GitHub仓库
+{% endembed %}
+
+
+
+### java-jwt
+
+
+
+## SpringBoot统一接口token认证
 
 
 
