@@ -1,6 +1,6 @@
 ---
-description: 主流安全算法的包装支持（md5、rsa、aes、sm）
+description: 关于spring-boot项目统一controller接口返回值格式
 ---
 
-# JDK安全算法
+# 统一后端接口解决方案
 
