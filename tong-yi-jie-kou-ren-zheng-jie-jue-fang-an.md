@@ -141,7 +141,17 @@ signatures：签名数组，header：不受签名保护的header，在unprotecte
 
 #### JWS 头部声明
 
-
+| 参数       | 含义                                                                                                                                  |
+| -------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| jku      | JSON Web 密钥 (JWK) 设置 URL。指向一组用于签署此 JWT 的 JSON 编码公钥的 URI。必须使用传输安全（例如用于 HTTP 的 TLS）来检索密钥。密钥的格式是 JWK 集                                 |
+| jwk      | JSON Web 密钥。用于以 JSON Web 密钥格式签署此 JWT 的密钥                                                                                            |
+| kid      | 密钥ID。一个用户定义的字符串，表示用于签署此 JWT 的单个密钥。此声明用于向收件人发出密钥签名更改信号（当使用多个密钥时）                                                                     |
+| x5u      | X.509 网址。指向一组以 PEM 形式编码的 X.509（证书格式标准）公共证书的 URI。该集中的第一个证书必须是用于签署此 JWT 的证书。后续证书分别签署前一个证书，从而完成证书链。 X.509 在 RFC 5280 7 中定义。传输证书需要传输安全性 |
+| x5c      | X.509 证书链。用于签署此 JWS 的 X.509 证书的 JSON 数组。每个证书必须是其 DER PKIX 表示的 Base64 编码值。数组中的第一个证书必须是用于签署此 JWT 的证书，然后是证书链中的其余证书                     |
+| x5t      | X.509 证书SHA-1 指纹。用于签署此 JWT 的 X.509 DER 编码证书的 SHA-1 指纹                                                                               |
+| x5t#S256 | 与x5t 相同，但使用SHA-256 而不是SHA-1                                                                                                         |
+| typ      | 与未加密 JWT 的 typ 值相同，附加值“JOSE”和“JOSE+JSON”分别用于指示紧凑序列化和 JSON 序列化。这仅用于类似 JOSE-header 携带对象与此 J​​WT 在单个容器中混合的情况                           |
+| crit     | 来自critical。包含声明名称的字符串数组，这些声明名称出现在同一标头中，用作必须由此 JWT 的解析器处理的实现定义的扩展。它必须包含声明的名称或不存在（空数组不是有效值）。                                          |
 
 <mark style="color:red;">**重点知识**</mark>：
 
@@ -154,23 +164,114 @@ _**从生产者与消费者角度理解JWS**_
 | 生产者 | private key |
 | 消费者 | public key  |
 
-<figure><img src=".gitbook/assets/image (2).png" alt=""><figcaption><p>JWT 签名</p></figcaption></figure>
-
-
+<figure><img src=".gitbook/assets/image (2).png" alt=""><figcaption><p>JWT 签名与验证</p></figcaption></figure>
 
 ### JWE
 
+JWE(Encrypted JWT)compact序列化主要生成流程：
 
+1. 根据alg声明算法，生成所需的随机数
+2. 依据密钥管理方式确定CEK
+3. 依据密钥管理方式确定JWE Encrypt Key
+4. 计算初始化向量（如果需要）
+5. 压缩文本内容（如果需要）
+6. 使用CEK、IV或AAD加密数据
+
+> base64(header)&#x20;
+>
+> base64(encryptedKey) _\[step 2,3]_
+>
+> base64(initializationVector) _\[step 4]_
+>
+> base64(cipherText) _\[step 6]_
+>
+> base64(authenticationTag) _\[step 6]_
+
+```vim
+eyJhbGciOiJBMTI4S1ciLCJlbmMiOiJBMTI4Q0JDLUhTMjU2In0.
+Y2DxdVnvuDwo5vutvvPg4PpGQKFmRxWoDUCtfs58Gv5rJ4J1RkSOUQ.
+-Iu2VusgO_w0uWrn0JWx3Q.
+krW8miBqh5x3dZ6ktf0C_A.
+HHYK0TxHth2949NDPpwTsw
+```
 
 ### JWK
 
+JWK的出现旨在，为不同加密密钥提供一个统一的格式标准
 
+JWK样例
+
+```json
+{
+    "kty": "EC",
+    "crv": "P-256",
+    "x": "MKBCTNIcKUSDii11ySs3526iDZ8AiTo7Tu6KPAqv7D4",
+    "y": "4Etl6SRW2YiLUrN5vfvVHuhp7x8PxltmWWlbbM4IFyM",
+    "d": "870MB6gfuTJ4HtUnUvYMyJpr5eUZNP4Bk43bVdj3eAE",
+    "use": "enc",
+    "kid": "1"
+}
+```
+
+| 参数       | 含义       | sample     |
+| -------- | -------- | ---------- |
+| kty      | 密钥类型     | EC、RSA、oct |
+| use      | 密钥用途     | sign、enc   |
+| key\_ops | 密钥的详细用途  |            |
+| alg      | 密钥算法     |            |
+| kid      | 密钥的唯一标识符 |            |
+| x5u      |          |            |
+| x5c      |          |            |
+| x5t      |          |            |
+| x5t#S256 |          |            |
 
 ### JWA
 
 
 
 ## JWT类库
+
+
+
+### jose4j
+
+_<mark style="color:blue;">****</mark>_[_<mark style="color:blue;">**maven**</mark>_<mark style="color:blue;">**坐标**</mark>](https://mvnrepository.com/artifact/org.bitbucket.b\_c/jose4j)<mark style="color:blue;">****</mark>
+
+```xml
+<dependency>
+    <groupId>org.bitbucket.b_c</groupId>
+    <artifactId>jose4j</artifactId>
+    <version>${jose4j.version}</version>
+</dependency>
+```
+
+_<mark style="color:blue;">**Wiki**</mark>_
+
+{% embed url="https://bitbucket.org/b_c/jose4j/wiki/Home" %}
+jose4j wiki
+{% endembed %}
+
+_**jwe生成**_
+
+```java
+@Test
+public void encryptJwt() throws JoseException {
+    AesKey key = new AesKey(ByteUtil.randomBytes(16));
+    JsonWebEncryption encryptedJwt = new JsonWebEncryption();
+    encryptedJwt.setPayload("Hello JWE");
+    encryptedJwt.setAlgorithmHeaderValue(KeyManagementAlgorithmIdentifiers.A128KW);
+    encryptedJwt.setEncryptionMethodHeaderParameter(ContentEncryptionAlgorithmIdentifiers.AES_128_CBC_HMAC_SHA_256);
+    encryptedJwt.setKey(key);
+    String compactSerialization = encryptedJwt.getCompactSerialization();
+    log.debug(compactSerialization);
+}
+```
+
+### java-jwt
+
+
+
+
 
 ### jjwt
 
@@ -242,10 +343,6 @@ public void signAndValidate() {
         log.debug(claimsJws.getHeader().toString());
 }
 ```
-
-### java-jwt
-
-
 
 ## SpringBoot统一接口token认证
 
