@@ -1,14 +1,4 @@
 # Table of contents
 
-* [统一后端接口解决方案](README.md)
-* [统一接口认证解决方案](tong-yi-jie-kou-ren-zheng-jie-jue-fang-an/README.md)
-  * [JsonWebToken基础](tong-yi-jie-kou-ren-zheng-jie-jue-fang-an/jsonwebtoken-ji-chu.md)
-  * [JWT - Java Lib](tong-yi-jie-kou-ren-zheng-jie-jue-fang-an/jwt-java-lib.md)
-  * [SpringBoot + JWT + Redis最佳实践](tong-yi-jie-kou-ren-zheng-jie-jue-fang-an/springboot-+-jwt-+-redis-zui-jia-shi-jian.md)
-* [SpringBoot集成系列](springboot-ji-cheng-xi-lie/README.md)
-  * [SpringBoot + Springdoc](springboot-ji-cheng-xi-lie/springboot-+-springdoc.md)
-  * [SpringBoot + Redis](springboot-ji-cheng-xi-lie/springboot-+-redis.md)
-  * [SpringBoot + ES](springboot-ji-cheng-xi-lie/springboot-+-es.md)
-  * [SpringBoot + RabbitMQ](springboot-ji-cheng-xi-lie/springboot-+-rabbitmq.md)
-  * [SpringBoot + Kafka](springboot-ji-cheng-xi-lie/springboot-+-kafka.md)
-  * [SpringBoot + Mybatis](springboot-ji-cheng-xi-lie/springboot-+-mybatis.md)
+* [Java集合框架](README.md)
+* [Java并发编程](java-bing-fa-bian-cheng.md)
