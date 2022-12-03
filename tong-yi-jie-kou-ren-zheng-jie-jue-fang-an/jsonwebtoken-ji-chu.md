@@ -1,8 +1,4 @@
----
-description: 基于JsonWebToken实现后端接口统一认证
----
-
-# 统一接口认证解决方案
+# JsonWebToken基础
 
 ## JsonWebToken
 
@@ -14,7 +10,7 @@ description: 基于JsonWebToken实现后端接口统一认证
 * JWA：所涉及的密码学算法
 * JWK：密码学算法所需的密钥
 
-### JWT
+
 
 > JsonWebToken主体分为三个部分：header、payload、signature
 
@@ -45,15 +41,17 @@ eyJqdGkiOiJkZWJhNzhiZDZiNTI0ZTA2OWE4MmZjZTJlNzdmOTU2MSIsImlzcyI6Ik1hdGVNYXN0ZXIi
 
 有效负载一般分为两类：用户自定义、标准注册负载（iss、sub、aud、exp、nbf、iat、jti）
 
-| 参数             |     | 含义                     |
-| -------------- | --- | ---------------------- |
-| issuer         | iss | jwt的发行者                |
-| subject        | sub | jwt信息的主题               |
-| audience       | aud | jwt的接受者信息              |
-| expire         | exp | jwt的过期时间，以1970年纪元以来的秒数 |
-| not before     | nbf | jwt的生效时间               |
-| issued at time | iat | jwt的发行时间               |
-| jwt id         | jti | jwt的唯一id               |
+
+
+| 参数             | Text | 含义                     |
+| -------------- | ---- | ---------------------- |
+| issuer         | iss  | jwt的发行者                |
+| subject        | sub  | jwt信息的主题               |
+| audience       | aud  | jwt的接受者信息              |
+| expire         | exp  | jwt的过期时间，以1970年纪元以来的秒数 |
+| not before     | nbf  | jwt的生效时间               |
+| issued at time | iat  | jwt的发行时间               |
+| jwt id         | jti  | jwt的唯一id               |
 
 ```json
 {
@@ -67,11 +65,11 @@ eyJqdGkiOiJkZWJhNzhiZDZiNTI0ZTA2OWE4MmZjZTJlNzdmOTU2MSIsImlzcyI6Ik1hdGVNYXN0ZXIi
 }
 ```
 
-### JWS
+## JWS
 
 JWS(Signed JWT)compact序列化主要生成流程：
 
-<figure><img src=".gitbook/assets/image (1).png" alt=""><figcaption><p>JWS Compact Serialization</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption><p>JWS Compact Serialization</p></figcaption></figure>
 
 **结果示例**
 
@@ -164,7 +162,7 @@ _**从生产者与消费者角度理解JWS**_
 | 生产者 | private key |
 | 消费者 | public key  |
 
-<figure><img src=".gitbook/assets/image (2) (1).png" alt=""><figcaption><p>JWT 签名与验证</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2) (1).png" alt=""><figcaption><p>JWT 签名与验证</p></figcaption></figure>
 
 JWS的签名算法：
 
@@ -200,7 +198,7 @@ ES512: ECDSA using P-512 and SHA-512
 {% endtab %}
 {% endtabs %}
 
-### JWE
+## JWE
 
 JWE(Encrypted JWT)compact序列化主要生成流程：
 
@@ -242,11 +240,11 @@ _**从生产者与消费者角度理解JWE**_
 | 生产者 | public key  |
 | 消费者 | private key |
 
-<figure><img src=".gitbook/assets/image (2).png" alt=""><figcaption><p>jwt 加密与解密</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2).png" alt=""><figcaption><p>jwt 加密与解密</p></figcaption></figure>
 
 
 
-### JWK
+## JWK
 
 JWK的出现旨在，为不同加密密钥提供一个统一的格式标准
 
@@ -276,133 +274,9 @@ JWK样例
 | x5t      |          |            |
 | x5t#S256 |          |            |
 
-### JWA
-
-
-
-## JWT类库
-
-jwt的类库主要需要掌握完成三件事：
-
-1. jwt密钥的生成 (generateKey)
-2. jwt的签名与验证 (sign & verify)
-3. [jwt的加密与解密 (encrypt & decrypt)](#user-content-fn-1)[^1]
-
-### jose4j
-
-_<mark style="color:blue;">****</mark>_[_<mark style="color:blue;">**maven**</mark>_<mark style="color:blue;">**坐标**</mark>](https://mvnrepository.com/artifact/org.bitbucket.b\_c/jose4j)<mark style="color:blue;">****</mark>
-
-```xml
-<dependency>
-    <groupId>org.bitbucket.b_c</groupId>
-    <artifactId>jose4j</artifactId>
-    <version>${jose4j.version}</version>
-</dependency>
-```
-
-_<mark style="color:blue;">**Wiki**</mark>_
-
-{% embed url="https://bitbucket.org/b_c/jose4j/wiki/Home" %}
-jose4j wiki
-{% endembed %}
-
-_**jwe生成**_
-
-```java
-@Test
-public void encryptJwt() throws JoseException {
-    AesKey key = new AesKey(ByteUtil.randomBytes(16));
-    JsonWebEncryption encryptedJwt = new JsonWebEncryption();
-    encryptedJwt.setPayload("Hello JWE");
-    encryptedJwt.setAlgorithmHeaderValue(KeyManagementAlgorithmIdentifiers.A128KW);
-    encryptedJwt.setEncryptionMethodHeaderParameter(ContentEncryptionAlgorithmIdentifiers.AES_128_CBC_HMAC_SHA_256);
-    encryptedJwt.setKey(key);
-    String compactSerialization = encryptedJwt.getCompactSerialization();
-    log.debug(compactSerialization);
-}
-```
-
-### java-jwt
+## JWA
 
 
 
 
 
-### jjwt
-
-_<mark style="color:blue;">**maven**</mark>_<mark style="color:blue;">**坐标**</mark>
-
-{% code title="jjwt" %}
-```xml
-<dependency>
-    <groupId>io.jsonwebtoken</groupId>
-    <artifactId>jjwt-api</artifactId>
-    <version>${jjwt.version}</version>
-</dependency>
-
-<dependency>
-    <groupId>io.jsonwebtoken</groupId>
-    <artifactId>jjwt-impl</artifactId>
-    <version>${jjwt.version}</version>
-</dependency>
-
-<dependency>
-    <groupId>io.jsonwebtoken</groupId>
-    <artifactId>jjwt-jackson</artifactId>
-    <version>${jjwt.version}</version>
-</dependency>
-```
-{% endcode %}
-
-_<mark style="color:blue;">**GitHub**</mark>_<mark style="color:blue;">**教程**</mark>
-
-{% embed url="https://github.com/jwtk/jjwt" %}
-jjwt GitHub仓库
-{% endembed %}
-
-_**jwt的签名和验证**_
-
-```java
-@Test
-public void signAndValidate() {
-        // 颁布密钥 HMAC系列（HS512）
-        SecretKey secretKey = Keys.secretKeyFor(SignatureAlgorithm.HS512);
-        
-        // 标准JWS
-        String hs512Jws = Jwts.builder()
-                .setHeader(ImmutableMap.<String, Object>builder()
-                        .put("alg", "HS512")
-                        .put("typ", "JWT")
-                        .build())
-                .setClaims(ImmutableMap.<String, Object>builder()
-                        .put("iss", "matemaster")
-                        .put("sub", "jws")
-                        .put("aud", "audience")
-                        .put("exp", Date.from(LocalDateTime.now().plusMinutes(1).atZone(ZoneId.systemDefault()).toInstant()))
-                        .put("iat", Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant()))
-                        .put("nbf", Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant()))
-                        .put("jti", UUID.randomUUID().toString().replace("-", ""))
-                        .build())
-                .signWith(secretKey)
-                .compact();
-        
-        // 解析JWS
-        Jws<Claims> claimsJws = Jwts
-                .parserBuilder()
-                .setSigningKey(secretKey)
-                .build()
-                .parseClaimsJws(hs512Jws);
-        
-        log.debug(claimsJws.getSignature());
-        log.debug(claimsJws.getBody().toString());
-        log.debug(claimsJws.getHeader().toString());
-}
-```
-
-## SpringBoot统一接口token认证
-
-
-
-
-
-[^1]: 部分类库支持
