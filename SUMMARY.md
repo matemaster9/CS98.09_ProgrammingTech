@@ -15,6 +15,8 @@
   * [SpringBoot + RabbitMQ](springboot-ji-cheng-xi-lie/springboot-+-rabbitmq.md)
   * [SpringBoot + Kafka](springboot-ji-cheng-xi-lie/springboot-+-kafka.md)
   * [SpringBoot + Mybatis](springboot-ji-cheng-xi-lie/springboot-+-mybatis.md)
+  * [SpringBoot + ShardingSphere](springboot-ji-cheng-xi-lie/springboot-+-shardingsphere.md)
+  * [SpringBoot + Druid](springboot-ji-cheng-xi-lie/springboot-+-druid.md)
 * [SpringBoot设计原理](springboot-she-ji-yuan-li.md)
 * [开发实践问题](kai-fa-shi-jian-wen-ti/README.md)
   * [Excel数据的导入导出](kai-fa-shi-jian-wen-ti/excel-shu-ju-de-dao-ru-dao-chu.md)
