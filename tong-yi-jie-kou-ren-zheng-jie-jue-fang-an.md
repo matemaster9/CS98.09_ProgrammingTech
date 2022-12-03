@@ -164,7 +164,41 @@ _**从生产者与消费者角度理解JWS**_
 | 生产者 | private key |
 | 消费者 | public key  |
 
-<figure><img src=".gitbook/assets/image (2).png" alt=""><figcaption><p>JWT 签名与验证</p></figcaption></figure>
+<figure><img src=".gitbook/assets/image (2) (1).png" alt=""><figcaption><p>JWT 签名与验证</p></figcaption></figure>
+
+JWS的签名算法：
+
+{% tabs %}
+{% tab title="HMAC" %}
+HS256: HMAC using SHA-256
+
+HS384: HMAC using SHA-384
+
+HS512: HMAC using SHA-512
+{% endtab %}
+
+{% tab title="RSA" %}
+RS256: RSASSA-PKCS-v1\_5 using SHA-256
+
+RS384: RSASSA-PKCS-v1\_5 using SHA-384
+
+RS512: RSASSA-PKCS-v1\_5 using SHA-512
+
+PS256: RSASSA-PSS using SHA-256 and MGF1 with SHA-256
+
+PS384: RSASSA-PSS using SHA-384 and MGF1 with SHA-384
+
+PS512: RSASSA-PSS using SHA-512 and MGF1 with SHA-512
+{% endtab %}
+
+{% tab title="ECDSA" %}
+ES256: ECDSA using P-256 and SHA-256
+
+ES384: ECDSA using P-384 and SHA-384
+
+ES512: ECDSA using P-512 and SHA-512
+{% endtab %}
+{% endtabs %}
 
 ### JWE
 
@@ -176,6 +210,8 @@ JWE(Encrypted JWT)compact序列化主要生成流程：
 4. 计算初始化向量（如果需要）
 5. 压缩文本内容（如果需要）
 6. 使用CEK、IV或AAD加密数据
+
+JWE(Encrypted JWT)compact序列化组成部分：
 
 > base64(header)&#x20;
 >
@@ -194,6 +230,21 @@ Y2DxdVnvuDwo5vutvvPg4PpGQKFmRxWoDUCtfs58Gv5rJ4J1RkSOUQ.
 krW8miBqh5x3dZ6ktf0C_A.
 HHYK0TxHth2949NDPpwTsw
 ```
+
+<mark style="color:red;">**重点知识**</mark>：
+
+在JWE中，Share SecretKey，各方都可以加密解密令牌。在对称加密中，只有公钥可以加密数据，私钥解密
+
+_**从生产者与消费者角度理解JWE**_
+
+| 角色  | JWE         |
+| --- | ----------- |
+| 生产者 | public key  |
+| 消费者 | private key |
+
+<figure><img src=".gitbook/assets/image (2).png" alt=""><figcaption><p>jwt 加密与解密</p></figcaption></figure>
+
+
 
 ### JWK
 
@@ -231,7 +282,11 @@ JWK样例
 
 ## JWT类库
 
+jwt的类库主要需要掌握完成三件事：
 
+1. jwt密钥的生成 (generateKey)
+2. jwt的签名与验证 (sign & verify)
+3. [jwt的加密与解密 (encrypt & decrypt)](#user-content-fn-1)[^1]
 
 ### jose4j
 
@@ -348,3 +403,6 @@ public void signAndValidate() {
 
 
 
+
+
+[^1]: 部分类库支持
