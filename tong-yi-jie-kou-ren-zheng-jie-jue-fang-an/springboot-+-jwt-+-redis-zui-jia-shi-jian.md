@@ -97,12 +97,32 @@ public String issueToken(SysUserDto sysUserDto) {
 
 ## token服务实现
 
-### 签名token
+* **token的签名与验证**
 
+```java
+public class JJwtImpl extends AbstractJsonWebTokenSupport implements JsonWebTokenSupport {
 
+    private JsonWebProperties jsonWebProperties;
 
-### 验证token
+    private static final Map<String, Object> HEADER = Maps.<String, Object>of("alg", "HS512")
+            .and("typ", "JWT")
+            .build();
 
+    @Override
+    public String sign(Map<String, Object> payload) {
+        // 签名密钥可以自行隐藏在配置文件
+        return Jwts.builder()
+                .setHeader(HEADER)
+                .setClaims(payload)
+                .signWith(jsonWebProperties.getHS512Key())
+                .compact();
+    }
 
+    @Override
+    public Map<String, Object> verify(String jws) {
+        return super.verify(jws);
+    }
+}
+```
 
 ## 签名切面
