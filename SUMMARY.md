@@ -20,6 +20,7 @@
   * [SpringBoot + Mybatis](springboot-ji-cheng-xi-lie/springboot-+-mybatis.md)
   * [SpringBoot + ShardingSphere](springboot-ji-cheng-xi-lie/springboot-+-shardingsphere.md)
   * [SpringBoot + Druid](springboot-ji-cheng-xi-lie/springboot-+-druid.md)
+  * [SpringBoot + Quartz](springboot-ji-cheng-xi-lie/springboot-+-quartz.md)
 * [SpringBoot设计原理](springboot-she-ji-yuan-li.md)
 * [统一后端接口解决方案](<README (1).md>)
 * [统一接口认证解决方案](tong-yi-jie-kou-ren-zheng-jie-jue-fang-an/README.md)
@@ -28,4 +29,4 @@
   * [SpringBoot + JWT + Redis最佳实践](tong-yi-jie-kou-ren-zheng-jie-jue-fang-an/springboot-+-jwt-+-redis-zui-jia-shi-jian.md)
 * [OSS对象存储解决方案](oss-dui-xiang-cun-chu-jie-jue-fang-an.md)
 * [SSO单点登录解决方案](sso-dan-dian-deng-lu-jie-jue-fang-an.md)
-* [HTTP接口通信解决方案](http-jie-kou-tong-xin-jie-jue-fang-an.md)
+* [HTTP接口通信解决方案](http-tong-xin-jie-jue-fang-an.md)
