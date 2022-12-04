@@ -22,7 +22,6 @@
   * [SpringBoot + ShardingSphere](springboot-ji-cheng-xi-lie/springboot-+-shardingsphere.md)
   * [SpringBoot + Druid](springboot-ji-cheng-xi-lie/springboot-+-druid.md)
   * [SpringBoot + Quartz](springboot-ji-cheng-xi-lie/springboot-+-quartz.md)
-* [SpringBoot设计原理](springboot-she-ji-yuan-li.md)
 * [统一后端接口解决方案](<README (1).md>)
 * [统一接口认证解决方案](tong-yi-jie-kou-ren-zheng-jie-jue-fang-an/README.md)
   * [JsonWebToken基础](tong-yi-jie-kou-ren-zheng-jie-jue-fang-an/jsonwebtoken-ji-chu.md)
