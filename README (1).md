@@ -29,7 +29,7 @@ description: 关于spring-boot项目统一controller接口返回值格式
 1. 针对接口成功响应: @ControllerAdvice
 2. 针对接口异常响应: @ControllerAdvice + @ExceptionHandler
 
-<figure><img src=".gitbook/assets/image.png" alt=""><figcaption><p>ResponseBodyAdvice接口</p></figcaption></figure>
+<figure><img src=".gitbook/assets/image (3).png" alt=""><figcaption><p>ResponseBodyAdvice接口</p></figcaption></figure>
 
 ## Q\&A <a href="#wv96h" id="wv96h"></a>
 
