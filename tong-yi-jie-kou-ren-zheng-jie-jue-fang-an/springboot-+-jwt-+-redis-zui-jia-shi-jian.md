@@ -126,3 +126,64 @@ public class JJwtImpl extends AbstractJsonWebTokenSupport implements JsonWebToke
 ```
 
 ## Auth切面
+
+切面验证和续签
+
+```java
+@Aspect
+@Component
+@AllArgsConstructor
+public class AuthAspect {
+    private SignatureService signatureService;
+    private JsonWebTokenSupport jsonWebTokenSupport;
+
+    @Pointcut(value = "execution(* cs.matemaster.standardwebserver.controller.*.*(..)) ")
+    public void pointcut() {
+    }
+
+    @Before(value = "pointcut()&& (@within(auth) || @annotation(auth))")
+    public void before(JoinPoint joinPoint, Auth auth) {
+        if (auth == null || auth.value().equals("No Login")) {
+            return;
+        }
+
+        ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+        HttpServletRequest request = requestAttributes.getRequest();
+        HttpServletResponse response = requestAttributes.getResponse();
+
+        if (response == null) {
+            throw new RuntimeException();
+        }
+
+        String authorization = request.getHeader("Authorization");
+        try {
+            Map<String, Object> claims = jsonWebTokenSupport.verify(authorization);
+        } catch (ExpiredJwtException expired) {
+            Claims claims = expired.getClaims();
+            String renewToken = signatureService.renewToken(claims);
+            request.setAttribute("Authorization", renewToken);
+        }
+    }
+}
+```
+
+token续签
+
+```java
+public String renewToken(Map<String, Object> payload) {
+    String tokenId = (String) payload.get("jti");
+    String sysToken = redisClientSupport.getMessage("SysToken", tokenId);
+    if (sysToken == null) {
+        throw new RuntimeException();
+    }
+
+    SysToken token = JsonUtil.deserialize(sysToken, SysToken.class);
+    Map<String, Object> claims = jsonWebTokenSupport.verify(token.getRefreshToken());
+    if (BusinessUtil.isFalse(StringUtils.equals(tokenId, (String) claims.get("jti"))) ||
+            BusinessUtil.isFalse(StringUtils.equals((String) payload.get("SysUser"), (String) claims.get("SysUser")))) {
+        throw new RuntimeException();
+    }
+
+    return jsonWebTokenSupport.sign(payload);
+}
+```
