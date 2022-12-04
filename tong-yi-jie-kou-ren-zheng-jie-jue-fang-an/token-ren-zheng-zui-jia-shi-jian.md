@@ -1,8 +1,8 @@
 ---
-description: 基于JWT + Redis实现token验证方案
+description: token基于JWT + Redis实现token验证方案
 ---
 
-# SpringBoot + JWT + Redis最佳实践
+# token认证最佳实践
 
 ## token的生成策略
 

@@ -26,7 +26,7 @@
 * [统一接口认证解决方案](tong-yi-jie-kou-ren-zheng-jie-jue-fang-an/README.md)
   * [JsonWebToken基础](tong-yi-jie-kou-ren-zheng-jie-jue-fang-an/jsonwebtoken-ji-chu.md)
   * [JWT - Java Lib](tong-yi-jie-kou-ren-zheng-jie-jue-fang-an/jwt-java-lib.md)
-  * [SpringBoot + JWT + Redis最佳实践](tong-yi-jie-kou-ren-zheng-jie-jue-fang-an/springboot-+-jwt-+-redis-zui-jia-shi-jian.md)
+  * [token认证最佳实践](tong-yi-jie-kou-ren-zheng-jie-jue-fang-an/token-ren-zheng-zui-jia-shi-jian.md)
 * [OSS对象存储解决方案](oss-dui-xiang-cun-chu-jie-jue-fang-an.md)
 * [SSO单点登录解决方案](sso-dan-dian-deng-lu-jie-jue-fang-an.md)
 * [HTTP接口通信解决方案](http-tong-xin-jie-jue-fang-an.md)
