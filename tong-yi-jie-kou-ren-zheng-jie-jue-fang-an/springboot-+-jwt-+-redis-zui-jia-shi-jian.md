@@ -45,23 +45,41 @@ public String getToken(SysUserDto sysUserDto) {
 }
 ```
 
+* 数据库客户信息验证
+
+```java
+public void validate(SysUserDto sysUserDto) {
+    SysUserDto sysUser = sysUserMapper.getSysUserByUsername(sysUserDto.getUsername());
+    if (sysUser == null) {
+        throw new IllegalParamsException("用户不存在");
+    }
+
+    if (!sysUserDto.getPassword().equals(sysUser.getPassword())) {
+        throw new IllegalParamsException("用户信息不匹配");
+    }
+}
+```
+
+* 签名token并存入redis
+
 ```java
 public String issueToken(SysUserDto sysUserDto) {
+        // jwt标准负载（30 min有效期）
         ImmutableMap<String, Object> accessPayload = ImmutableMap.<String, Object>builder()
-                .put("jti", "")
-                .put("exp", new Date())
-                .put("iat", new Date())
+                .put("jti", sysUserDto.getUsername())
                 .put("iss", "mcc")
-                .put("nbf", new Date())
+                .put("exp", DateTimeUtil.convertLocalDateTimeToDate(LocalDateTime.now().plusMinutes(30L)))
+                .put("iat", DateTimeUtil.convertLocalDateTimeToDate(LocalDateTime.now()))
+                .put("nbf", DateTimeUtil.convertLocalDateTimeToDate(LocalDateTime.now()))
                 .put("SysUser", Objects.requireNonNull(JsonUtil.serialize(sysUserDto)))
                 .build();
-        
+        // jwt标准负载（3 h有效期）
         ImmutableMap<String, Object> refreshPayload = ImmutableMap.<String, Object>builder()
-                .put("jti", "")
-                .put("exp", new Date())
-                .put("iat", new Date())
+                .put("jti", sysUserDto.getUsername())
                 .put("iss", "mcc")
-                .put("nbf", new Date())
+                .put("exp", DateTimeUtil.convertLocalDateTimeToDate(LocalDateTime.now().plusHours(3L)))
+                .put("iat", DateTimeUtil.convertLocalDateTimeToDate(LocalDateTime.now()))
+                .put("nbf", DateTimeUtil.convertLocalDateTimeToDate(LocalDateTime.now()))
                 .put("SysUser", Objects.requireNonNull(JsonUtil.serialize(sysUserDto)))
                 .build();
         
