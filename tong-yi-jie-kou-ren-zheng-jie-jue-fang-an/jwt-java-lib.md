@@ -102,10 +102,50 @@ JJwtUtil工具包
 
 {% code title="JJwtUtil" %}
 ```java
+public final class JJWTUtil {
+
+    public static final JwtBuilder hmacJwt;
+    public static final JwtParser hmacJwtParser;
+    private static final Base64.Encoder encoder = Base64.getEncoder();
+
+    private JJWTUtil() {
+    }
+
+    public static String getJws(Map<String, Object> header, Map<String, Object> claims) {
+        return hmacJwt
+                .setHeader(header)
+                .setClaims(claims)
+                .compact();
+    }
+
+    public static Claims getClaims(String jws) {
+        return hmacJwtParser.parseClaimsJws(jws).getBody();
+    }
+
+    public static Map<String, Object> getClaimsAsMap(String jws) {
+        return getClaims(jws);
+    }
+
+    public static String getSecretKey(SignatureAlgorithm algorithm) {
+        SecretKey secretKey = Keys.secretKeyFor(algorithm);
+        return encoder.encodeToString(secretKey.getEncoded());
+    }
+
+    public static Map<String, String> getSecretKeyPair(SignatureAlgorithm algorithm) {
+        KeyPair keyPair = Keys.keyPairFor(algorithm);
+        return ImmutableMap.of(
+                "public", encoder.encodeToString(keyPair.getPublic().getEncoded()),
+                "private", encoder.encodeToString(keyPair.getPrivate().getEncoded())
+        );
+    }
+
+    static {
+        hmacJwt = Jwts.builder().signWith(JsonWebConst.getHMACKey());
+        hmacJwtParser = Jwts.parserBuilder().setSigningKey(JsonWebConst.getHMACKey()).build();
+    }
+}
 ```
 {% endcode %}
-
-
 
 _**jwt的签名和验证**_
 
@@ -143,6 +183,22 @@ public void signAndValidate() {
         log.debug(claimsJws.getSignature());
         log.debug(claimsJws.getBody().toString());
         log.debug(claimsJws.getHeader().toString());
+}
+```
+
+jwt支持密钥及安全算法
+
+```java
+/**
+ * jjwt支持对称和非对称两种三类：HMAC RSASSA ECDSA
+ */
+public void generateSecretKey() {
+    // HMAC using SHA-512
+    Keys.secretKeyFor(SignatureAlgorithm.HS512);
+    // ECDSA using P-521 and SHA-512
+    Keys.keyPairFor(SignatureAlgorithm.ES512);
+    // RSASSA-PKCS-v1_5 using SHA-512
+    Keys.keyPairFor(SignatureAlgorithm.RS512);
 }
 ```
 
