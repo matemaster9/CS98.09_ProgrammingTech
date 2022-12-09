@@ -37,3 +37,4 @@
 * [guava开发应用记录](guava-kai-fa-ying-yong-ji-lu.md)
 * [SpringBoot最佳实践](springboot-zui-jia-shi-jian/README.md)
   * [yaml属性绑定](springboot-zui-jia-shi-jian/yaml-shu-xing-bang-ding.md)
+  * [基于容器实现策略模式](springboot-zui-jia-shi-jian/ji-yu-rong-qi-shi-xian-ce-lve-mo-shi.md)

@@ -9,7 +9,6 @@ description: 基于spring-boot读取yaml文件的三种方式value、setter、co
 `@Configuration + @Value`
 
 ```java
-@Setter
 @Getter
 @ToString
 @Configuration
