@@ -35,3 +35,5 @@
 * [SSO单点登录解决方案](sso-dan-dian-deng-lu-jie-jue-fang-an.md)
 * [HTTP接口通信解决方案](http-tong-xin-jie-jue-fang-an.md)
 * [guava开发应用记录](guava-kai-fa-ying-yong-ji-lu.md)
+* [SpringBoot最佳实践](springboot-zui-jia-shi-jian/README.md)
+  * [yaml属性绑定](springboot-zui-jia-shi-jian/yaml-shu-xing-bang-ding.md)
