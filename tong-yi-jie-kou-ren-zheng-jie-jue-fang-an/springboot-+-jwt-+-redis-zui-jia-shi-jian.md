@@ -25,7 +25,7 @@ token负载中除了标准声明之外，还需加入系统用户信息（userna
 
 ## 接口认证流程
 
-<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption><p>refresh策略</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (4).png" alt=""><figcaption><p>refresh策略</p></figcaption></figure>
 
 签发token接口设计：
 
