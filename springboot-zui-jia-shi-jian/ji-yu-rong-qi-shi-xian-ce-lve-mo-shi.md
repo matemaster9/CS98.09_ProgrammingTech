@@ -16,7 +16,8 @@ public class ActivityPrepareHelper {
 
     @PostConstruct
     public void initActivityPrepareServiceMap() {
-        activityPrepareServiceMap = ImmutableMap.<ActivityPrepareTypeEnum, ActivityPrepareService>builder()
+        activityPrepareServiceMap = ImmutableMap
+                .<ActivityPrepareTypeEnum, ActivityPrepareService>builder()
                 .put(ActivityPrepareTypeEnum.LiveStreaming, applicationContext.getBean(LiveStreamingStrategy.class))
                 .put(ActivityPrepareTypeEnum.PrizeAward, applicationContext.getBean(PrizeAwardStrategy.class))
                 .put(ActivityPrepareTypeEnum.OtherActivity, applicationContext.getBean(OtherActivityStrategy.class))
@@ -47,3 +48,8 @@ public class ActivityPrepareHelper {
 
 <figure><img src="../.gitbook/assets/image.png" alt=""><figcaption><p>业务服务接口</p></figcaption></figure>
 
+业务背景：
+
+利用活动报备的类型获取配置数据中的责任人，不同类型对于不同责任人
+
+这里的具体策略就是对应具体活动报备类型，每个策略都针对不同类型数据进行处理逻辑，可以有效避免大量的if-else代码冗余
