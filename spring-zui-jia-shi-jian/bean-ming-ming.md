@@ -1,3 +1,7 @@
+---
+description: bean默认命名规则及别名
+---
+
 # bean命名
 
 ## bean的默认命名规则

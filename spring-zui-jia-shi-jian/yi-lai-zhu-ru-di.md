@@ -1,5 +1,5 @@
 ---
-description: dependency injection
+description: Constructor-based or setter-based DI?
 ---
 
 # 依赖注入DI
