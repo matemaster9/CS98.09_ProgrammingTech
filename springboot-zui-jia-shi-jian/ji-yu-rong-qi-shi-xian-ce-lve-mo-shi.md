@@ -46,7 +46,7 @@ public class ActivityPrepareHelper {
 
 抽象接口策略草图
 
-<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption><p>业务服务接口</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (5).png" alt=""><figcaption><p>业务服务接口</p></figcaption></figure>
 
 业务背景：
 
