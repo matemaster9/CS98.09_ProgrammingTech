@@ -30,6 +30,38 @@ SpringIOC的主要实现代码：`org.springframework.beans` 、 `org.springfram
 * FactoryBean
 * 确定bean的运行时类型
 
+## 依赖处理
+
+### 依赖注入
+
+* 构造器注入
+* setter注入
+* 方法注入
+* 注入注解
+
+### 依赖解析
+
+* 依赖解析过程
+* 循环依赖处理
+
+### 其他依赖处理
+
+* depend-on
+* 延迟初始化
+* 自动装配
+
+## bean范围
+
+
+
+## 自定义bean
+
+
+
+
+
+
+
 
 
 ``
