@@ -24,7 +24,7 @@ A：@Autowired只支持案例类型注入，可搭配@Qualifier实现按名称�
 
 一个接口，多个实现，依赖注入时，具体情况
 
-<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption><p>用户查询接口</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (8).png" alt=""><figcaption><p>用户查询接口</p></figcaption></figure>
 
 ```java
 public interface SysUserQueryService {
