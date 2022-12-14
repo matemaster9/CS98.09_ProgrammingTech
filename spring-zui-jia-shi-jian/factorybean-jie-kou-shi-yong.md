@@ -35,3 +35,20 @@ public class RubikQuery {
 ```java
 RubikQueryFactory bean = (RubikQueryFactory) applicationContext.getBean("&rubikQueryFactory");
 ```
+
+## mybatis-spring应用案例
+
+在mybatis应用中，核心类 SqlSession，有SqlSessionFactory创建。在集成spring中，bean：SqlSessionFactory的创建，是有SqlSessionFactoryBean实现FactoryBean接口，达到在spring容器创建注入SqlSessionFactory的目的
+
+<figure><img src="../.gitbook/assets/image (9).png" alt=""><figcaption><p>SqlSessionFactoryBean</p></figcaption></figure>
+
+```java
+@Override
+public SqlSessionFactory getObject() throws Exception {
+  if (this.sqlSessionFactory == null) {
+    afterPropertiesSet();
+  }
+
+  return this.sqlSessionFactory;
+}
+```

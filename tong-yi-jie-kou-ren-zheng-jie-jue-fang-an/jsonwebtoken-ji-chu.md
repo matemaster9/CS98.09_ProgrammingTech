@@ -69,7 +69,7 @@ eyJqdGkiOiJkZWJhNzhiZDZiNTI0ZTA2OWE4MmZjZTJlNzdmOTU2MSIsImlzcyI6Ik1hdGVNYXN0ZXIi
 
 JWS(Signed JWT)compact序列化主要生成流程：
 
-<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption><p>JWS Compact Serialization</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1).png" alt=""><figcaption><p>JWS Compact Serialization</p></figcaption></figure>
 
 **结果示例**
 

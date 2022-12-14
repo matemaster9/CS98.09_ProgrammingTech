@@ -63,7 +63,7 @@ public interface StorageManagementMapper {
 
 * 批处理（100000 1s）
 
-<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption><p>100000 1s</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption><p>100000 1s</p></figcaption></figure>
 
 * sql拼接 （100000 8s）
 

@@ -22,6 +22,7 @@
   * [SpringBoot + Kafka](springboot-ji-cheng-xi-lie/springboot-+-kafka.md)
   * [SpringBoot + Mybatis](springboot-ji-cheng-xi-lie/springboot-+-mybatis.md)
     * [大数据批量插入](springboot-ji-cheng-xi-lie/springboot-+-mybatis/da-shu-ju-pi-liang-cha-ru.md)
+    * [注解开发](springboot-ji-cheng-xi-lie/springboot-+-mybatis/zhu-jie-kai-fa.md)
   * [SpringBoot + ShardingSphere](springboot-ji-cheng-xi-lie/springboot-+-shardingsphere.md)
   * [SpringBoot + Druid](springboot-ji-cheng-xi-lie/springboot-+-druid.md)
   * [SpringBoot + Quartz](springboot-ji-cheng-xi-lie/springboot-+-quartz.md)
