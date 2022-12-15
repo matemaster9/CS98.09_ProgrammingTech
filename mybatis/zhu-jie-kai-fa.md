@@ -10,15 +10,17 @@ description: 常用Mybatis注解
 2. 注解开发与xml之间的比较？
 3. 注解开发常见的坑
 
-| 注解           | 含义 |
-| ------------ | -- |
-| `@Insert`    |    |
-| `@Delete`    |    |
-| `@Update`    |    |
-| `@Select`    |    |
-| `@Results`   |    |
-| `@Result`    |    |
-| `@ResultMap` |    |
-| `@One`       |    |
-| `@Many`      |    |
+| 注解            | 含义 |
+| ------------- | -- |
+| `@Insert`     |    |
+| `@Delete`     |    |
+| `@Update`     |    |
+| `@Select`     |    |
+| `@Results`    |    |
+| `@Result`     |    |
+| `@ResultMap`  |    |
+| `@One`        |    |
+| `@Many`       |    |
+| `@MapperScan` |    |
+| `@Mapper`     |    |
 
