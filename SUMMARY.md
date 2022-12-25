@@ -54,3 +54,4 @@
   * [CompletableFuture类](jdk-biao-zhun-ku-zui-jia-shi-jian/completablefuture-lei.md)
   * [Arrays类](jdk-biao-zhun-ku-zui-jia-shi-jian/arrays-lei.md)
   * [Collections类](jdk-biao-zhun-ku-zui-jia-shi-jian/collections-lei.md)
+* [SQL数据mock解决方案](sql-shu-ju-mock-jie-jue-fang-an.md)
