@@ -11,5 +11,6 @@
   * [列表优先数组](effective-java-li-jie/lie-biao-you-xian-shu-zu.md)
   * [泛型-有限通配符](effective-java-li-jie/fan-xing-you-xian-tong-pei-fu.md)
   * [枚举替代int常量](effective-java-li-jie/mei-ju-ti-dai-int-chang-liang.md)
+  * [实例域替代序数](effective-java-li-jie/shi-li-yu-ti-dai-xu-shu.md)
 * [云开发范式](yun-kai-fa-fan-shi.md)
 * [重构refactor](zhong-gou-refactor.md)
