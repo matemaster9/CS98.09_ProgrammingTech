@@ -13,5 +13,6 @@
   * [枚举替代int常量](effective-java-li-jie/mei-ju-ti-dai-int-chang-liang.md)
   * [实例域替代序数](effective-java-li-jie/shi-li-yu-ti-dai-xu-shu.md)
   * [EnumMap替代序数索引](effective-java-li-jie/enummap-ti-dai-xu-shu-suo-yin.md)
+  * [接口替代可拓展枚举](effective-java-li-jie/jie-kou-ti-dai-ke-tuo-zhan-mei-ju.md)
 * [云开发范式](yun-kai-fa-fan-shi.md)
 * [重构refactor](zhong-gou-refactor.md)
